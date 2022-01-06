@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         movieView.translatesAutoresizingMaskIntoConstraints = false
         
         let movieViewModel = MovieViewModel()
-        movieViewModel.configure(movieView)
+        movieViewModel.setBinding(movieView)
         
         self.view.addSubview(movieView)
         
@@ -27,6 +27,14 @@ class ViewController: UIViewController {
             movieView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             movieView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ].forEach({ $0.isActive = true })
+        
+        movieView.rightButton.addAction(UIAction(handler: { _ in
+            movieViewModel.touchUpButton(true)
+        }), for: .touchUpInside)
+        
+        movieView.leftButton.addAction(UIAction(handler: { _ in
+            movieViewModel.touchUpButton(false)
+        }), for: .touchUpInside)
     }
 }
 

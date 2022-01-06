@@ -6,35 +6,37 @@
 //
 
 import Foundation
+import UIKit
 
 // Model에게서 전달받은 데이터를 View가 바로 보여주기 적합하도록 가공
 class MovieViewModel {
     
-    let movie: Movie
+    let movies: [Movie] = [
+        Movie("noWayHome", "SPIDER-MAN: NO WAY HOME", "Jon Watts", .actionAdventure, "2021년 12월 17일", 94),
+        Movie("tickTickBoom", "TICK, TICK... BOOM!", "Lin-Manuel Miranda", .musicalPerformingarts, "2021년 11월 12일", 88),
+        Movie("theGentlemen", "THE GENTLEMEN", "Guy Ritchie", .comedy, "2020년 01월 24일", 75),
+        Movie("wild", "WILD", "Jean-Marc Vallée", .drama, "2014년 12월 03일", 88),
+        Movie("theGreatGatsby", "THE GREAT GATSBY", "Baz Luhrmann", .drama, "2013년 05월 10일", 48)
+    ]
+    
+    let poster: Observable<String?> = Observable(nil)
+    let title: Observable<String?> = Observable(nil)
+    let director: Observable<String?> = Observable(nil)
+    let genre: Observable<Genre?> = Observable(nil)
+    let releaseDate: Observable<String?> = Observable(nil)
+    let score: Observable<Int?> = Observable(nil)
+    var index: Int = 0
     
     init() {
-        self.movie = Movie("noWayHome",
-                           "SPIDER-MAN: NO WAY HOME",
-                           "Jon Watts",
-                           .actionAdventure,
-                           "2021년 12월 17일",
-                           100)
+        setMovieValue(index)
     }
     
-    var poster: String {
-        return movie.poster
+    func getDirectorText(_ value: String) -> String {
+        return "\(value) 감독"
     }
     
-    var title: String {
-        return movie.title
-    }
-    
-    var directorText: String {
-        return "\(movie.director) 감독"
-    }
-    
-    var genreText: String {
-        switch movie.genre {
+    func getGenreText(_ value: Genre) -> String {
+        switch value {
         case .actionAdventure:
             return "액션 & 어드벤쳐"
         case .animation:
@@ -66,29 +68,65 @@ class MovieViewModel {
         }
     }
     
-    var releaseDateText: String {
-        return "\(movie.releaseDate) 개봉"
+    func getReleaseDateText(_ value: String) -> String {
+        return "\(value) 개봉"
     }
     
-    var scoreText: String {
-        switch movie.score {
+    func getScoreText(_ value: Int) -> String {
+        switch value {
         case ..<50:
-            return "🫑 \(movie.score)점"
+            return "🫑 \(value)점"
         case 50..<80:
-            return "🍅 \(movie.score)점"
+            return "🍅 \(value)점"
         case 80...100:
-            return "🍅✨ \(movie.score)점"
+            return "🍅✨ \(value)점"
         default:
             return "평가 정보 없음"
         }
     }
     
-    func configure(_ view: MovieView) {
-        view.poster = movie.poster
-        view.titleLabel.text = movie.title
-        view.directorLabel.text = directorText
-        view.genreTextLabel.text = genreText
-        view.releaseDateLabel.text = releaseDateText
-        view.scoreLabel.text = scoreText
+    func setBinding(_ view: MovieView) {
+        self.poster.bind({ value in
+            view.posterImageView.image = UIImage(named: value!)
+        })
+        
+        self.title.bind({ value in
+            view.titleLabel.text = value!
+        })
+        
+        self.director.bind({ value in
+            view.directorLabel.text = self.getDirectorText(value!)
+        })
+        
+        self.genre.bind({ value in
+            view.genreTextLabel.text = self.getGenreText(value!)
+        })
+        
+        self.releaseDate.bind({ value in
+            view.releaseDateLabel.text = self.getReleaseDateText(value!)
+        })
+        
+        self.score.bind({ value in
+            view.scoreLabel.text = self.getScoreText(value!)
+        })
+    }
+    
+    func touchUpButton(_ isForward: Bool) {
+        if isForward {
+            index = (index == movies.count - 1 ? 0 : index + 1)
+        } else {
+            index = (index == 0 ? movies.count - 1 : index - 1)
+        }
+        
+        setMovieValue(index)
+    }
+    
+    private func setMovieValue(_ index: Int) {
+        poster.value = movies[index].poster
+        title.value = movies[index].title
+        director.value = movies[index].director
+        genre.value = movies[index].genre
+        releaseDate.value = movies[index].releaseDate
+        score.value = movies[index].score
     }
 }

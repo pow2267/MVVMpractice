@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		767E9AA02786F92100A94B63 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E9A9F2786F92100A94B63 /* Observable.swift */; };
+		767E9AA227871CA400A94B63 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E9AA127871CA400A94B63 /* Genre.swift */; };
 		767EB07A27868A35004CC792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EB07927868A35004CC792 /* AppDelegate.swift */; };
 		767EB07C27868A35004CC792 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EB07B27868A35004CC792 /* SceneDelegate.swift */; };
 		767EB07E27868A35004CC792 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EB07D27868A35004CC792 /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		767E9A9F2786F92100A94B63 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		767E9AA127871CA400A94B63 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		767EB07627868A35004CC792 /* MVVMpractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMpractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767EB07927868A35004CC792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		767EB07B27868A35004CC792 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				767EB09327868FD3004CC792 /* Movie.swift */,
+				767E9A9F2786F92100A94B63 /* Observable.swift */,
+				767E9AA127871CA400A94B63 /* Genre.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,9 +204,11 @@
 				767EB09427868FD3004CC792 /* Movie.swift in Sources */,
 				767EB09827869D05004CC792 /* MovieView.swift in Sources */,
 				767EB07E27868A35004CC792 /* ViewController.swift in Sources */,
+				767E9AA02786F92100A94B63 /* Observable.swift in Sources */,
 				767EB0962786915E004CC792 /* MovieViewModel.swift in Sources */,
 				767EB07A27868A35004CC792 /* AppDelegate.swift in Sources */,
 				767EB07C27868A35004CC792 /* SceneDelegate.swift in Sources */,
+				767E9AA227871CA400A94B63 /* Genre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
