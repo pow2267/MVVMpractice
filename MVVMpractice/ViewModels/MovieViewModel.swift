@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 // Model에게서 전달받은 데이터를 View가 바로 보여주기 적합하도록 가공
 class MovieViewModel {
