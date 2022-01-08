@@ -85,33 +85,7 @@ class MovieViewModel {
         }
     }
     
-    func setBinding(_ view: MovieView) {
-        self.poster.bind({ value in
-            view.posterImageView.image = UIImage(named: value!)
-        })
-        
-        self.title.bind({ value in
-            view.titleLabel.text = value!
-        })
-        
-        self.director.bind({ value in
-            view.directorLabel.text = self.getDirectorText(value!)
-        })
-        
-        self.genre.bind({ value in
-            view.genreTextLabel.text = self.getGenreText(value!)
-        })
-        
-        self.releaseDate.bind({ value in
-            view.releaseDateLabel.text = self.getReleaseDateText(value!)
-        })
-        
-        self.score.bind({ value in
-            view.scoreLabel.text = self.getScoreText(value!)
-        })
-    }
-    
-    func touchUpButton(_ isForward: Bool) {
+    func changeMovie(_ isForward: Bool) {
         if isForward {
             index = (index == movies.count - 1 ? 0 : index + 1)
         } else {
